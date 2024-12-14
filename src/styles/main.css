@@ -1,0 +1,122 @@
+body {
+    display:flex;
+/*alinhar ao centro vertical e horizontal*/
+    justify-content: center;
+    align-items: center; 
+    user-select: none;
+
+/*minimo de altura*/
+    min-height: 100vh;
+
+    background: #fc1e8a;
+}
+
+.conteiner{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30PX;
+
+/*cor gradiente, direcao do raio e cores*/
+    background: linear-gradient(
+        325deg, 
+        #03001e 0%,
+        #7303c0 30%,
+        #ec38bc 70%,
+        #fdeff9 100%
+    );
+    padding: 40px 60px;
+}
+
+h2 {
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;
+/*espacamentos entre as letras*/
+    letter-spacing: 0.1em;
+}
+
+/*botao reset*/
+.reset{
+    padding: 15px 20px;
+/*largura maxima do conteiner*/
+    width: 100%;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+/*peso da fonte*/
+    font-weight: 600;
+}
+
+/*quando clicar no botao*/
+.reset:focus {
+    color: #fff;
+    background-color:#ec38bc
+}
+
+.game {
+    width: 430px;
+    height: 430px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+/*cards*/
+.item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+
+    font-size: 3em;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+}
+
+.item::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.85;
+    background: linear-gradient(135deg, #2b2b2b, #fc1e8a, #4d4d4d, #fc1e8a, #2b2b2b);
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    background-size: 300% 300%; /* Para movimento no gradiente */
+    animation: metallic-pink-shine 4s infinite linear; /* Efeito de brilho */
+}
+
+@keyframes metallic-pink-shine {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+.item.boxOpen {
+    transform: rotateY(0deg);
+}
+.boxOpen::after,
+.boxMatch::after {
+    transform: rotateY(180deg);
+}
